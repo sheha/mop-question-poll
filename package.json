@@ -1,0 +1,62 @@
+{
+  "name": "mop-question-poll",
+  "version": "1.0.0",
+  "description": "Test assignment, MOP, Ismar Sehic",
+  "main": "./client/index.jsx",
+  "scripts": {
+    "start": "nodemon server/server.js",
+    "start:client": " NODE_ENV=development webpack-dev-server --config ./webpack.config.js --mode development",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client:build": "webpack -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sheha/mop-question-poll.git"
+  },
+  "author": "Ismar Sehic",
+  "license": "ISC",
+  "private": true,
+  "bugs": {
+    "url": "https://github.com/sheha/mop-question-poll/issues"
+  },
+  "homepage": "https://github.com/sheha/mop-question-poll#readme",
+  "dependencies": {
+    "D": "^1.0.0",
+    "body-parser": "^1.18.3",
+    "connect-mongo": "^2.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "logger": "0.0.1",
+    "mongoose": "^5.4.19",
+    "morgan": "^1.9.1",
+    "passport": "^0.4.0",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "react-materialize": "^2.6.0",
+    "react-redux": "^6.0.1",
+    "react-router": "^5.0.0",
+    "redux": "^4.0.1",
+    "redux-devtools": "^3.5.0",
+    "redux-thunk": "^2.3.0",
+    "rotating-file-stream": "^1.4.0",
+    "shortid": "^2.2.14"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.0",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.4.2",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.4.0",
+    "babel-loader": "^8.0.5",
+    "eslint": "^5.15.3",
+    "eslint-plugin-react": "^7.12.4",
+    "html-webpack-plugin": "^3.2.0",
+    "nodemon": "^1.18.10",
+    "react-hot-loader": "^4.8.0",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1",
+    "webpack-node-externals": "^1.7.2"
+  }
+}

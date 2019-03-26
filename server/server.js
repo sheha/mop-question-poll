@@ -12,6 +12,8 @@ import dbconn from './persistence/dbconn';
 import middleware from './middlewares/middlewares'
 import cors from 'cors';
 
+const indexRoute = require('./routes/index');
+const authRoutes = require('./routes/auth');
 // logging, daily log files, rotating write stream
 // var accessLogStream = rfs('access.log', {
 //     interval: '1d', // rotate daily
@@ -33,8 +35,16 @@ auth(passport);
 
 middleware(app);
 
+app.use("/", indexRoute);
+app.use("/auth", authRoutes);
 
 
+//handle 404
+app.use(function (req, res, next) {
+    var err = new Error('Page Not Found!');
+    err.status = 404;
+    next(err);
+});
 
 //endpoints
 // app.length('/', (req, res) => {

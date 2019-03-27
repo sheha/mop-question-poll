@@ -49,6 +49,11 @@ router.post('/register', function (req, res) {
     }
 });
 
+router.get("/profile", function(req, res) {
+  User.find({}, function(err, users) {
+    res.json(users);
+  });
+});
 
 
 router.get('/', function (req, res) {
@@ -58,7 +63,7 @@ router.get('/', function (req, res) {
 });
 
 // Authenticate the user and get a JSON Web Token to include in the header of future requests.
-router.post('/signin', (req, res) => {
+router.post('/login', (req, res) => {
     User.findOne({
         email: req.body.email
     }, function (err, user) {

@@ -15,7 +15,10 @@ const QuestionsSchema = new Schema({
   },
   answers: [{ type: Schema.Types.ObjectId, ref: "Answers" }],
   _userId: { type: Schema.Types.ObjectId, ref: "User" },
-  createDate: Date
+    created: {
+        type: Date,
+        default: Date.now
+    },
 });
 
 QuestionsSchema.method('like', function likes(like, cb) {

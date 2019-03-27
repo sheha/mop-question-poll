@@ -14,6 +14,10 @@ const AnswerSchema = new Schema({
           default: 0,
 
     },
+    created: {
+        type: Date,
+        default:Date.now
+    },
   _questionId: { type: Schema.Types.ObjectId, ref: "Question" },
   _userId: { type: Schema.Types.ObjectId, ref: "User" }
 });

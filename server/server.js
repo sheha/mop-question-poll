@@ -28,7 +28,7 @@ app.use(cors());
 dbconn();
 
 app.use(morgan("combined"));
-
+app.use(express.static("public"));
 //init passport jwt auth
 app.use(passport.initialize());
 auth(passport);
@@ -62,7 +62,7 @@ app.listen(environment.PORT, (err) => {
     if (err) {
         throw err;
     } else {
-        console.log(`Server running on : ${environment.PORT},
+        console.log(`Server up and listening on : ${environment.PORT},
         Running in ${process.env.NODE_ENV}`)
 
 

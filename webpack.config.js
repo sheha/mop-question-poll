@@ -2,27 +2,33 @@ const path = require('path');
 require('@babel/register');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
-const nodeExternals = require('webpack-node-externals');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+//const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
     // exclude node's internal libraries and node_modules from bundling
     // they're still accessible through 'require'
-    target: 'node',
-    externals: [nodeExternals()],
-
+    // target: 'node',
+    // externals: [nodeExternals()],
   entry: "./client/index.jsx",
+  output: {
+    path: path.resolve(__dirname + "/public/dist/"),
+    publicPath:"/",
+    filename: "bundle.js"
+  },
+  mode: process.env.NODE_ENV || "development",
   module: {
     rules: [
       // JS sources - server and client
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ["babel-loader"]
-          },
-        // CSS sources
+        use: ['babel-loader']
+      },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"]
+        use: ["style-loader", {
+          loader: MiniCssExtractPlugin.loader}, "css-loader"]
       }
     ]
   },
@@ -30,18 +36,17 @@ module.exports = {
     extensions: ["*", ".js", ".jsx"]
     },
   // bundling
-  output: {
-    path: path.resolve(__dirname + "./client/dist"),
-    publicPath: "/",
-    filename: "bundle.js"
-  },
+
   // Plugins
   plugins: [
     new htmlWebpackPlugin({
-      template: "./client/index.html",
-        filename: "index.html",
-      inject:"body",
-      hash: true
+      template: "./public/index.html",
+      filename: "index.html",
+        inject:false,
+    }),
+    new MiniCssExtractPlugin({
+      filename:"main.css"
+
     }),
     new webpack.HotModuleReplacementPlugin()
     ],
@@ -51,7 +56,7 @@ module.exports = {
     devtool :'source-map',
 
   devServer: {
-    contentBase: "./client/dist",
+    contentBase: "./public/dist",
     hot: true
   },
 

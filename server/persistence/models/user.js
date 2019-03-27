@@ -1,21 +1,19 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 
-import QuestionsSchema from './questions';
-import AnswerSchema from './answers';
 
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
-  name: String,
+    name: { type: String,required:'First name cannot be empty'},
   email: {
     type: String,
-    required: true,
+    required: 'Email address cannot be empty',
     unique: true
   },
   username: {
     type: String,
-    required: true,
+      required:'Username is required',
     unique: true
   },
   password: {
@@ -25,7 +23,11 @@ const UserSchema = new Schema({
   answered: {
     type: Number,
     default: 0
-  },
+    },
+    created: {
+        type: Date,
+        default: Date.now
+    },
   myQuestions: [{ type: Schema.Types.ObjectId, ref: "Questions" }],
     myAnswers: [{ type: Schema.Types.ObjectId, ref: "Answers" }]
 });

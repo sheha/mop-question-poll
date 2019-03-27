@@ -1,7 +1,12 @@
 import express from 'express';
 const router = express.Router();
 
-router.get('/', function (req, res) {
-    res.send('WORK IN PROGRESS');
+router.get('/*', (req, res) => {
+    const opts = {
+        root: `${__dirname}/../../public/dist/`
+
+    };
+
+    res.sendFile('index.html', opts);
 })
 module.exports = router;

@@ -23,6 +23,7 @@ const authRoutes = require('./routes/auth');
 
 //initialization
 const app = express();
+app.set('APP_SECRET', environment.AUTH_SECRET);
 app.use(cors());
 
 dbconn();
@@ -30,8 +31,8 @@ dbconn();
 app.use(morgan("combined"));
 app.use(express.static("public"));
 //init passport jwt auth
-app.use(passport.initialize());
-auth(passport);
+// app.use(passport.initialize());
+// auth(passport);
 
 middleware(app);
 

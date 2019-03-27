@@ -1,10 +1,7 @@
 import JwtStrategy from 'passport-jwt';
 import User from '../persistence/models/user';
 import environment from './environment';
-// const JwtStrategy = require('passport-jwt').Strategy;
 
-// const User = require('../persistence/models/user');
-// const environment = require('./environment');
 const extractJwt = JwtStrategy.ExtractJwt;
 const jwtStrategy = JwtStrategy.Strategy;
 

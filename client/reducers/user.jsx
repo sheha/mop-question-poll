@@ -1,79 +1,23 @@
-/* eslint-disable no-case-declarations */
-import axios from 'axios';
-import jwtDecode from 'jwt-decode';
+// Imports
+import isEmpty from 'lodash/isEmpty'
 
-// Actions
-const LOGIN = 'user/LOGIN';
-const LOGOUT = 'user/LOGOUT';
-const FETCH_USER = 'user/FETCH_USER';
+// App Imports
+import { USER_CURRENT_SET } from '../actions/user'
 
-// reducer
-export default function Users(state = {}, action) {
-    switch (action.type) {
-        case FETCH_USER:
-            const temp = () => {
-                if (action.users === undefined) {
-                    return false;
-                }
-                return true;
-            };
-            return {
-                current: action.users,
-                loggedIn: temp(),
-            };
-        case LOGIN:
-            return {
-                ...state,
-                ...action.user,
-                loggedIn: true,
-            };
-        case LOGOUT:
-            return {
-                ...state,
-                loggedIn: false,
-            };
-        default:
-            return state;
-    }
+const initialState = {
+  isAuthenticated: false,
+  user: {}
 }
 
-// actionCreators
-export const login = user => ({
-    type: LOGIN,
-    user,
-});
-export const logout = user => ({
-    type: LOGOUT,
-    user,
-});
-export const receiveUser = users => ({
-    type: FETCH_USER,
-    users,
-});
+export default (state = initialState, action = {}) => {
+  switch (action.type) {
+    case USER_CURRENT_SET:
+      return {
+        isAuthenticated: !isEmpty(action.user),
+        user: action.user
+      }
 
-// Async actions with thunk
-export function fetchUser() {
-    return dispatch =>
-        axios
-            .get('/auth/profile')
-            .then((res) => {
-                dispatch(receiveUser(res.data.user));
-                // console.log(res);
-            })
-            .catch((err) => {
-                console.warn(err);
-            });
-}
-
-export function logoutUser() {
-    return dispatch =>
-        axios
-            .get('/api/logout')
-            .then((res) => {
-                dispatch(logout(res.data.user));
-                // console.log(res);
-            })
-            .catch((err) => {
-                console.warn(err);
-            });
+    default:
+      return state
+  }
 }

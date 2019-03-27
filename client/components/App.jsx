@@ -1,37 +1,29 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
+// Imports
+import React from 'react'
+import { Route, Switch } from 'react-router-dom'
 
-// react-bootstrap
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Navbar from "react-bootstrap/Navbar";
-import NavbarCollapse from "react-bootstrap/NavbarCollapse";
-import Nav from "react-bootstrap/Nav";
-import { LinkContainer } from "react-router-bootstrap";
+// App Imports
+import AppLayout from './AppLayout'
+import HomePageContainer from './components/HomePageContainer';
+// import TweetAdd from './components/tweet/add'
+// import TweetViewContainer from './components/tweet/view-container'
+// import UserLogin from './components/user/login'
+// import UserRegister from './components/user/register'
+// import About from './components/about'
+import NotFound from './NotFound';
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+const App = () => (
+  <AppLayout>
+    <Switch>
+      <Route exact path="/" component={HomePageContainer}/>
+      {/* <Route path="/tweet/add" component={TweetAdd}/>
+      <Route path="/tweet/:tweetId" component={TweetViewContainer}/>
+      <Route path="/user/login" component={UserLogin}/>
+      <Route path="/user/register" component={UserRegister}/>
+      <Route path="/about" component={About}/> */}
+      <Route component={NotFound}/>
+    </Switch>
+  </AppLayout>
+)
 
-
-
-    };
-  }
-
-  render() {
-    //const { isAuthenticated } = this.props.user;
-    return (
-      <Container fluid>
-        <Row>
-          <Col>
-           LUDILOOOO
-          </Col>
-        </Row>
-      </Container>
-    );
-  }
-}
+export default App
